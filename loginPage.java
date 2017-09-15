@@ -120,6 +120,16 @@ public class loginPage extends Application {
 						if (dbUsername.equals(username.getText()) && dbPassword.equals(password.getText())) {
 
 							System.out.println("Username and Password is Correct");
+							
+							Stage st1 = new Stage();
+							VBox sp1 = new VBox();
+							Scene newsc = new Scene(sp1,300,200);
+							Label loginacc = new Label("Login Succesful");
+							loginacc.setFont(f1);
+							Button loginbut = new Button("OK");
+							sp1.getChildren().addAll(loginacc,loginbut);
+							st1.setScene(newsc);
+							st1.show();
 
 						} 
 
