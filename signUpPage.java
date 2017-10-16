@@ -1,3 +1,9 @@
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -84,6 +90,44 @@ public abstract class signUpPage extends Application {
 		register.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				System.out.println("hello world");
+				
+				
+				
+				
+				try {
+					Connection connect = null;
+					connect = connectionclass.dbconnector();
+					
+					String Signupstring = "Insert into School values(?,?,?,?,?)";
+					PreparedStatement prepstate ;
+					
+					
+					prepstate = connect.prepareStatement(Signupstring);
+					
+					prepstate.setString(1,username1.getText());
+					prepstate.setString(2,password1.getText());
+					prepstate.setString(3,email1.getText());
+					prepstate.setString(4,fname1.getText());
+					prepstate.setString(5,lname1.getText());
+					int result = prepstate.executeUpdate();
+					System.out.println(password1.getText());
+					//connect.commit();
+					prepstate.close();
+					
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.toString());
+					e.printStackTrace();
+				}
+				
+				
+				
+				
+				
+				
+				
+				
 				stage1.close();
 
 			}
@@ -91,5 +135,6 @@ public abstract class signUpPage extends Application {
 		});
 		
 
-	}
+	}    
+	
 }
